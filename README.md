@@ -1,55 +1,157 @@
-# Vietnamese License Plate Recognition
+# CS231 – Vietnamese License Plate Recognition Final Project
 
-This repository provides you with a detailed guide on how to training and build a Vietnamese License Plate detection and recognition system. This system can work on 2 types of license plate in Vietnam, 1 line plates and 2 lines plates.
+This project presents a Vietnamese License Plate Recognition (VLPR) system developed for the course **CS231 – Introduction to Computer Vision**. The system automatically detects and recognizes Vietnamese vehicle license plates from images and video streams using deep learning techniques. The project follows a two-stage pipeline: (1) License Plate Detection and (2) Character Detection and Recognition. YOLOv5 is used as the primary object detection framework for both stages. The system supports both one-line and two-line Vietnamese license plates and can perform real-time recognition through webcam input.
+
+## Features
+
+- Vietnamese license plate detection using YOLOv5
+- Character recognition from detected plates
+- Support for one-line and two-line license plates
+- Real-time webcam inference
+- Image-based inference
+- Training notebooks for custom datasets
+
+## Project Structure
+
+```bash
+├── model/                      # Pretrained models
+├── result/                     # Output results and demo images
+├── test_image/                 # Sample test images
+├── training/                   # Training notebooks
+│   ├── Plate_detection.ipynb
+│   └── Letter_detection.ipynb
+├── webcam.py                   # Webcam inference
+├── lp_image.py                 # Image inference
+├── requirement.txt             # Required dependencies
+└── README.md
+```
 
 ## Installation
 
-```bash
-  git clone https://github.com/Marsmallotr/License-Plate-Recognition.git
-  cd License-Plate-Recognition
-
-  # install dependencies using pip 
-  pip install -r ./requirement.txt
-```
-
-- **Pretrained model** provided in ./model folder in this repo 
-
-- **Download yolov5 (old version) from this link:** [yolov5 - google drive](https://drive.google.com/file/d/1g1u7M4NmWDsMGOppHocgBKjbwtDA-uIu/view?usp=sharing)
-
-- Copy yolov5 folder to project folder
-
-## Run License Plate Recognition
+Clone the repository:
 
 ```bash
-  # run inference on webcam (15-20fps if there is 1 license plate in scene)
-  python webcam.py 
-
-  # run inference on image
-  python lp_image.py -i test_image/3.jpg
-
-  # run LP_recognition.ipynb if you want to know how model work in each step
+git clone https://github.com/your-username/CS231-License-Plate-Recognition-Final-Project.git
+cd CS231-License-Plate-Recognition-Final-Project
 ```
 
-## Result
-![Demo 1](result/image.jpg)
+Install dependencies:
 
-![Vid](result/video_1.gif)
+```bash
+pip install -r requirement.txt
+```
 
-## Vietnamese Plate Dataset
+Download the compatible YOLOv5 version from the following link:
 
-This repo uses 2 sets of data for 2 stage of license plate recognition problem:
+https://drive.google.com/file/d/1g1u7M4NmWDsMGOppHocgBKjbwtDA-uIu/view?usp=sharing
 
-- [License Plate Detection Dataset](https://drive.google.com/file/d/1xchPXf7a1r466ngow_W_9bittRqQEf_T/view?usp=sharing)
-- [Character Detection Dataset](https://drive.google.com/file/d/1bPux9J0e1mz-_Jssx4XX1-wPGamaS8mI/view?usp=sharing)
+After downloading:
 
-Thanks [Mì Ai](https://www.miai.vn/thu-vien-mi-ai/) and [winter2897](https://github.com/winter2897/Real-time-Auto-License-Plate-Recognition-with-Jetson-Nano/blob/main/doc/dataset.md) for sharing a part in this dataset.
+1. Extract the YOLOv5 folder
+2. Copy the folder into the project directory
+
+## Pretrained Models
+
+Pretrained models are provided in the `model/` directory, including:
+
+- License plate detection model
+- Character detection model
+
+## Running the Project
+
+### Webcam Inference
+
+```bash
+python webcam.py
+```
+
+### Image Inference
+
+```bash
+python lp_image.py -i test_image/3.jpg
+```
+
+### Notebook Demonstration
+
+Open the notebook below to understand the complete recognition pipeline and model workflow:
+
+```bash
+LP_recognition.ipynb
+```
+
+## Dataset
+
+This project uses two datasets for the two-stage recognition pipeline.
+
+### License Plate Detection Dataset
+
+https://drive.google.com/file/d/1xchPXf7a1r466ngow_W_9bittRqQEf_T/view?usp=sharing
+
+### Character Detection Dataset
+
+https://drive.google.com/file/d/1bPux9J0e1mz-_Jssx4XX1-wPGamaS8mI/view?usp=sharing
+
+Special thanks to Mì AI and winter2897 for sharing and contributing parts of the dataset resources.
 
 ## Training
 
-**Training code for Yolov5:**
+Training notebooks are available in the `training/` directory.
 
-Use code in ./training folder
+### Train License Plate Detection Model
+
 ```bash
-  training/Plate_detection.ipynb     #for LP_Detection
-  training/Letter_detection.ipynb    #for Letter_detection
+training/Plate_detection.ipynb
 ```
+
+### Train Character Detection Model
+
+```bash
+training/Letter_detection.ipynb
+```
+
+## Methodology
+
+### Stage 1 – License Plate Detection
+
+YOLOv5 is trained to detect Vietnamese license plates from input images. The detected plate region is cropped for the next stage.
+
+### Stage 2 – Character Detection and Recognition
+
+A second YOLOv5 model detects individual characters inside the cropped plate image. Characters are sorted based on spatial position and combined to reconstruct the final license plate text.
+
+## Results
+
+### Sample Detection Result
+
+![Demo](result/image.jpg)
+
+### Real-Time Recognition Demo
+
+![Video Demo](result/video_1.gif)
+
+## Technologies Used
+
+- Python
+- OpenCV
+- PyTorch
+- YOLOv5
+- NumPy
+- Jupyter Notebook / Google Colab
+
+## Course Information
+
+- Course: CS231 – Introduction to Computer Vision
+- Project Type: Final Project
+- Topic: Vietnamese License Plate Recognition using Deep Learning
+
+## Contributors
+
+- Hoàng Nguyễn
+- CS231 Final Project Team
+
+## References
+
+- YOLOv5 – Ultralytics
+- OpenCV Documentation
+- PyTorch Documentation
+- Vietnamese License Plate datasets from community contributors
