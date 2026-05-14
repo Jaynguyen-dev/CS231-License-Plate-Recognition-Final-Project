@@ -123,10 +123,10 @@ A second YOLOv5 model detects individual characters inside the cropped plate ima
 
 ### Sample Detection Result
 
-![Demo](result/output0.jpg)
-![Demo](result/output1.jpg)
-![Demo](result/output2.jpg)
-![Demo](result/output3.jpg)
+![Demo](result/output0.png)
+![Demo](result/output1.png)
+![Demo](result/output2.png)
+![Demo](result/output3.png)
 ## Technologies Used
 
 - Python
